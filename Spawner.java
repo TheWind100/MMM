@@ -338,7 +338,7 @@
                      numMonsters = 4;   
             for(int m=AIMONSTER1, nm=0; m<=AIMONSTER4 && m<players.length && nm<numMonsters; m++, nm++)
             {  //AI monsters inhabit indexes 4,5,6 & 7
-               int monsterType = (int)(Math.random()*5);
+               int monsterType = (int)(Math.random()*6);
                coord = getRandomP2Spawn();
                if(monsterType == 0)
                   players[m] = new Custom(coord[0], coord[1], customInfo, playerImages[Integer.parseInt(customInfo[1])]);
@@ -350,6 +350,8 @@
                   players[m] = new Robot(coord[0], coord[1], playerImages[2]);
                else if(monsterType == 4)
                   players[m] = new Insect(coord[0], coord[1], playerImages[3]);
+               else if(monsterType == 5)
+                  players[m] = new Blob(coord[0], coord[1], playerImages[4]);
                players[m].setSpeedPenalty(2);		//make monsters slower to give player vehicle a chance
                if(!players[m].isSwimmer() && board[coord[0]][coord[1]].equals("~~~"))
                {

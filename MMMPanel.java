@@ -1047,7 +1047,7 @@
                      message = "AI friend joins";
                   messageTime = numFrames;
                   int[] coord = Spawner.getRandomP2Spawn();
-                  int monsterType = (int)(Math.random()*5);
+                  int monsterType = (int)(Math.random()*6);
                   if(monsterType == 0)
                      players[AIPLAYER] = new Custom(coord[0], coord[1], customInfo, playerImages[Integer.parseInt(customInfo[1])]);
                   else if(monsterType == 1)	    //ARGS:  row, col, image collection, animation delay
@@ -1058,6 +1058,8 @@
                      players[AIPLAYER] = new Robot(coord[0], coord[1], playerImages[2]);
                   else if(monsterType == 4)
                      players[AIPLAYER] = new Insect(coord[0], coord[1], playerImages[3]);
+                  else if(monsterType == 5)
+                     players[AIPLAYER] = new Blop(coord[0], coord[1], playerImages[4]);
                                
                   if(!players[AIPLAYER].isSwimmer() && board[coord[0]][coord[1]][panel].equals("~~~"))
                   {
@@ -1181,7 +1183,7 @@
                      explosions.add(new Explosion("SMALL", players[PLAYER2].getX()-(cellSize/2), players[PLAYER2].getY()-(cellSize/2), puffImages, animation_delay));
                   message = "Player 2 joins";
                   messageTime = numFrames;
-                  int monsterType = (int)(Math.random()*5);
+                  int monsterType = (int)(Math.random()*6);
                   if(gameMode==EARTH_INVADERS)
                   {
                      coord[0] = board.length-2;
@@ -1196,6 +1198,8 @@
                         players[PLAYER2] = (new Robot("BoobooTron",  coord[0], coord[1], playerImages[2], 100, 0, 30));
                      else if(monsterType == 4)
                         players[PLAYER2] = (new Insect("WoeMantis",  coord[0], coord[1], playerImages[3], 100, 0, 30));
+                     else if(monsterType == 5)
+                        players[PLAYER2] = (new Blop("The-Blop", coord[0], coord[1], playerImages[4], 100, 0, 30));
                   }
                   else
                   {
@@ -1209,6 +1213,8 @@
                         players[PLAYER2] = new Robot(coord[0], coord[1], playerImages[2]);
                      else if(monsterType == 4)
                         players[PLAYER2] = new Insect(coord[0], coord[1], playerImages[3]);
+                     else if(monsterType == 5)
+                        players[PLAYER2] = new Blop(coord[0], coord[1], playerImages[4]);
                   }
                   if(!players[PLAYER2].isSwimmer() && board[coord[0]][coord[1]][panel].equals("~~~"))
                   {
@@ -1449,8 +1455,8 @@
             }
             else if(k==KeyEvent.VK_5)		//hit 5 key - pick random vehicle or The-Blop
             {
-                                  		//select Blop
-             
+               monsterType = 5;                   		//select Blop
+               needToStart = true;
             }
             else if(k==KeyEvent.VK_6)		//hit 6 key
             {
@@ -1554,6 +1560,8 @@
                         players[PLAYER1] = (new Robot("BoobooTron", coord[0], coord[1], playerImages[2], 100, 0, 30));
                      else if(monsterType == 4)
                         players[PLAYER1] = (new Insect("WoeMantis",  coord[0], coord[1], playerImages[3], 100, 0, 30));
+                     else if(monsterType == 5)
+                        players[PLAYER1] = (new Blop("The-Blop", coord[0], coord[1], playerImages[4], 100, 0, 30));
                   }
                   else
                   {	
@@ -1573,6 +1581,8 @@
                         players[PLAYER1] = new Robot(coord[0], coord[1], playerImages[2]);
                      else if(monsterType == 4)
                         players[PLAYER1] = new Insect(coord[0], coord[1], playerImages[3]);  
+                     else if(monsterType == 5)
+                        players[PLAYER1] = new Blop(coord[0], coord[1], playerImages[4]);
                   }
                   if(players[PLAYER1].healInWater())
                   {
